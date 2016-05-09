@@ -1,0 +1,70 @@
+<div style="height:100%">
+    <p>{{message}}</p>
+    <div class="row show-grid" style="height:100%"> 
+        <div class="col-md-2" style="padding-left:2%">
+            <h3>Order By:</h3>
+            <div class="form-group">
+                <select class="form-control" ng-model="selectedOrder" ng-change="reCalculateDisplayedMasteries()" ng-options="x for x in orders"></select>
+            </div>
+            <hr />
+            <h3>Filters:</h3>
+            <div class="checkbox" ng-repeat="filter in filterValues">
+                <label>
+                    <input type="checkbox" ng-change="reCalculateDisplayedMasteries()" ng-model="filters[filter.name]">
+                    {{filter.name}}
+                </label>
+            </div>
+        </div>
+        <div class="col-md-8" style="height:100%; overflow-y: auto">
+            <div ng-repeat="cm in championMasteries" class="row show-grid">
+                <div class="col-md-1" style="padding-top:1%">
+                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/champion/{{cm.Champion.key}}.png" alt="..." class="img-thumbnail">
+                </div>
+                <div class="col-md-11">
+                    <div class="row show-grid">
+                        <div class="col-md-10">
+                            <h2 class="champName">{{cm.Champion.name}}</h2>
+                            <h4 class="champTitle">{{cm.Champion.title}}</h4>  
+                            
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{cm.Mastery.championPointsSinceLastLevel}}" aria-valuemin="0" aria-valuemax="{{cm.Mastery.championPointsSinceLastLevel + cm.Mastery.championPointsUntilNextLevel}}" 
+                                style="width: {{(cm.Mastery.championPointsSinceLastLevel / (cm.Mastery.championPointsSinceLastLevel + cm.Mastery.championPointsUntilNextLevel)) * 100}}%;">
+                                    {{cm.Mastery.championPointsSinceLastLevel}}/{{cm.Mastery.championPointsSinceLastLevel + cm.Mastery.championPointsUntilNextLevel}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <h4 style="text-align: center">Level</h4>
+                            <h2 style="text-align: center; margin-top:0">{{cm.Mastery.championLevel}}</h2>        
+                        </div>
+                    </div>                    
+                </div>
+                <hr />
+            </div>    
+        </div> 
+        <div class="col-md-2" style="padding-left:2%">
+            <h3>Summoner:</h3>
+            <div ng-show="summonerData != null" class="row show-grid">
+                <div class="col-md-2" style="padding: 0 0 0 0;">
+                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{summonerData.profileIconId}}.png" alt="..." class="img-thumbnail">
+                </div>
+                <div class="col-md-10">
+                    <p>Name: {{summonerData.name}}</p>
+                    <p>Level: {{summonerData.summonerLevel}}</p>
+                </div>
+            </div>
+            <h3>Stats:</h3>
+            <div ng-show="summonerData != null" class="row show-grid" ng-controller="summonerController">
+                <div class="col-md-12">
+                    <p>{{$scope.formSummonerName}}</p>
+                    <p>Total Wins: {{summonerStats.totalWins}}</p>
+                    <p>Total Champions killed: {{summonerStats.totalChampionKills}}</p>
+                    <p>Total Assists:{{summonerStats.totalAssists}}</p>
+                    <p>Total Turrents killed: {{summonerStats.totalTurretsKilled}}</p>
+                    <p>Total Minions killed: {{summonerStats.totalMinionKills}}</p>
+                    <p>Total Neutral Minion killed: {{summonerStats.totalNeutralMinionsKilled}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

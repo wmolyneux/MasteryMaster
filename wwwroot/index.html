@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./css/stylesheet.css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="./scripts/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="./scripts/vendor/angularjs/angular.min.js"></script>
+    <script src="./scripts/vendor/angularjs/angular-route.js"></script>
+    <script src="./scripts/route.js"></script>
+    <script src="./scripts/findSummoner.js"></script>
+    <script src="./scripts/champMasteries.js"></script>
+    <script src="./scripts/achievements.js"></script>
+</head>
+<body ng-app="MasteryMaster" style="background-color: rgb(26, 26, 38); color: #cccccc">
+    <div id="header">
+        <div class="jumbotron" style="background-image: url('https://cdn.leagueoflegends.com/apollo/assets/blue_header.jpg'); background-position-y: -80px;">
+            <h1>MasteryMaster</h1>
+            <p>Become a MasterYi at champion mastery.</p>
+        </div>
+        <nav class="navbar navbar-inverse" style="margin-bottom:0">
+            <div id="navigationBar" class="container">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                </div>
+                <div class="navbar-collapse collapse" ng-controller="findSummonerController">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active:isActive('/')}"><a href="#/">Champion Masteries</a></li>
+                    <li ng-class="{active:isActive('/achievements')}"><a href="#achievements">Achievements</a></li>
+                    <li ng-class="{active:isActive('/about')}"><a href="#about">About</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" ng-show="isActive('/')">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="selectedRegion" ng-change="onRegionChanged()" ng-options="x for x in regions"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Summoner Name" class="form-control" ng-model="formSummonerName">
+                    </div>
+                    <button type="submit" class="btn btn-success" ng-click="findSummonerInfo()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="content">
+        <div ng-view style="height:100%"></div>
+    </div>
+</body>
+</html>

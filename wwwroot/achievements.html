@@ -1,0 +1,24 @@
+<div style="height: 100%">
+    <p ng-repeat="n in message">{{n}}</p>
+    <div class="row show-grid" style="height: 100%">
+        <div class="col-md-2" style="padding-left:2%">
+            <h3>Achievement details:</h3>
+            <p>You have earned {{achievementStats.earnedCount}} of {{achievements.length}} achievements</p>
+            <p>Your achievement score is: {{achievementStats.earnedScore}}</p> 
+        </div>
+        <div class="col-md-10" style="height:100%; overflow-y: auto">
+            <div class="row" style="height: 25%; padding-bottom: 10px">
+                <div ng-repeat="a in achievements" class="col-md-3" style="height: 100%" ng-style="{ opacity: getOpacity({{a.earned}})}">
+                    <div class="col-md-5">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{a.id}}.png" alt="..." style="100px">
+                    </div>
+                    <div class="col-md-7" style="text-align: center; margin-top: 6%">
+                        <h4 style="margin-top:0">{{a.title}}</h4>
+                        <p>{{a.desc}}</p>
+                        <p>Score: {{a.score}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
