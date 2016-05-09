@@ -12,7 +12,7 @@ Personally as a League of Legends player I very often only play characters like 
 
 ## Running the application
 
-The application is a NodeJS application which both acts as a back-end server and serves the front-end AngularJS website.
+The application is a NodeJS application which both acts as a back-end server and serves the front-end AngularJS website. The application should run using version 5 or above of NodeJS. 
 
 To run the application open a command prompt or terminal and run:
 ```
@@ -21,4 +21,9 @@ npm install
 This will install the dependencies for the application, then run:
 ```
 node ./app.js
+```
+Now that the application is running you can now navigate to your browser at:
+
+```
+http://localhost:8080
 ```
