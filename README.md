@@ -14,6 +14,11 @@ Personally as a League of Legends player I very often only play characters like 
 
 The application is a NodeJS application which both acts as a back-end server and serves the front-end AngularJS website. The application should run using version 5 or above of NodeJS. 
 
+Firstly you need to enter an API key into the config.js file, simply enter your API key into the string variable declared inside the javascript file. This file can be found at:
+```
+./utilities/config.js
+```
+
 To run the application open a command prompt or terminal and run:
 ```
 npm install
